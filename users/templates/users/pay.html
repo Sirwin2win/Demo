@@ -1,0 +1,48 @@
+{% load paystack %}
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pay with Paystack</title>
+</head>
+
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <!-- <script src="https://js.paystack.co/v1/inline.js"></script> -->
+        <!-- <button type="button" onclick="payWithPaystack()"> Pay </button> -->
+        <!-- <button type="submit">Upload</button> -->
+        {% paystack_button amount=100 email="sirwin@example.com" %}
+    </form>
+    <!-- place below the html form -->
+    <!-- <script>
+        function payWithPaystack() {
+            var handler = PaystackPop.setup({
+                key: 'pk_live_b1a9dfb7ccca1b8c108427d5505dc5f9b2eb1dbd',
+                email: 'customer@email.com',
+                amount: 10000,
+                ref: '' + Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                metadata: {
+                    custom_fields: [
+                        {
+                            display_name: "Mobile Number",
+                            variable_name: "mobile_number",
+                            value: "+2348012345678"
+                        }
+                    ]
+                },
+                callback: function (response) {
+                    alert('success. transaction ref is ' + response.reference);
+                },
+                onClose: function () {
+                    alert('window closed');
+                }
+            });
+            handler.openIframe();
+        }
+    </script> -->
+</body>
+
+</html> 
